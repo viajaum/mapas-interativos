@@ -1,0 +1,2826 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/L.Control.Layers.Tree.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/votos_ronaldo_por_local_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:false, maxZoom:28, minZoom:1
+        }).fitBounds([[-31.828557138232664,-52.54948644560419],[-31.602602388232636,-52.15080074713086]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        // remove popup's row if "visible-with-data"
+        function removeEmptyRowsFromPopupContent(content, feature) {
+         var tempDiv = document.createElement('div');
+         tempDiv.innerHTML = content;
+         var rows = tempDiv.querySelectorAll('tr');
+         for (var i = 0; i < rows.length; i++) {
+             var td = rows[i].querySelector('td.visible-with-data');
+             var key = td ? td.id : '';
+             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                 rows[i].parentNode.removeChild(rows[i]);
+             }
+         }
+         return tempDiv.innerHTML;
+        }
+        // add class to format popup if it contains media
+		function addClassToPopupIfMedia(content, popup) {
+			var tempDiv = document.createElement('div');
+			tempDiv.innerHTML = content;
+			if (tempDiv.querySelector('td img')) {
+				popup._contentNode.classList.add('media');
+					// Delay to force the redraw
+					setTimeout(function() {
+						popup.update();
+					}, 10);
+			} else {
+				popup._contentNode.classList.remove('media');
+			}
+		}
+        var zoomControl = L.control.zoom({
+            position: 'topleft'
+        }).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_votos_ronaldo_por_local_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LATITUDE'] !== null ? autolinker.link(feature.properties['LATITUDE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOGITUDE'] !== null ? autolinker.link(feature.properties['LOGITUDE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCAL'] !== null ? autolinker.link(feature.properties['LOCAL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VOTOS'] !== null ? autolinker.link(feature.properties['VOTOS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_votos_ronaldo_por_local_1_0(feature) {
+            if (feature.properties['VOTOS'] >= 0.000000 && feature.properties['VOTOS'] <= 1.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 1.000000 && feature.properties['VOTOS'] <= 2.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.088622754491018,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 2.000000 && feature.properties['VOTOS'] <= 3.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.177245508982036,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 3.000000 && feature.properties['VOTOS'] <= 4.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.265868263473054,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 4.000000 && feature.properties['VOTOS'] <= 5.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.354491017964072,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 5.000000 && feature.properties['VOTOS'] <= 6.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.44311377245509,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 6.000000 && feature.properties['VOTOS'] <= 7.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.5317365269461076,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 7.000000 && feature.properties['VOTOS'] <= 8.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.6203592814371257,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 8.000000 && feature.properties['VOTOS'] <= 9.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.708982035928144,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 9.000000 && feature.properties['VOTOS'] <= 10.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.797604790419162,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 10.000000 && feature.properties['VOTOS'] <= 11.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.8862275449101795,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 11.000000 && feature.properties['VOTOS'] <= 12.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 2.9748502994011976,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 12.000000 && feature.properties['VOTOS'] <= 13.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.0634730538922157,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 13.000000 && feature.properties['VOTOS'] <= 14.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.1520958083832333,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 14.000000 && feature.properties['VOTOS'] <= 15.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.2407185628742514,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 15.000000 && feature.properties['VOTOS'] <= 16.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.3293413173652695,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 16.000000 && feature.properties['VOTOS'] <= 17.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.4179640718562876,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 17.000000 && feature.properties['VOTOS'] <= 18.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.5065868263473057,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 18.000000 && feature.properties['VOTOS'] <= 19.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.5952095808383238,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 19.000000 && feature.properties['VOTOS'] <= 20.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.683832335329341,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 20.000000 && feature.properties['VOTOS'] <= 21.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.772455089820359,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 21.000000 && feature.properties['VOTOS'] <= 22.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.861077844311377,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 22.000000 && feature.properties['VOTOS'] <= 23.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 3.949700598802395,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 23.000000 && feature.properties['VOTOS'] <= 24.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.038323353293413,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 24.000000 && feature.properties['VOTOS'] <= 25.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.126946107784431,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 25.000000 && feature.properties['VOTOS'] <= 26.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.215568862275449,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 26.000000 && feature.properties['VOTOS'] <= 27.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.304191616766467,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 27.000000 && feature.properties['VOTOS'] <= 28.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.392814371257485,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 28.000000 && feature.properties['VOTOS'] <= 29.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.481437125748503,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 29.000000 && feature.properties['VOTOS'] <= 30.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.570059880239521,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 30.000000 && feature.properties['VOTOS'] <= 31.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.658682634730539,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 31.000000 && feature.properties['VOTOS'] <= 32.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.747305389221557,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 32.000000 && feature.properties['VOTOS'] <= 33.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.835928143712575,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 33.000000 && feature.properties['VOTOS'] <= 34.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 4.924550898203593,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 34.000000 && feature.properties['VOTOS'] <= 35.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.013173652694611,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 35.000000 && feature.properties['VOTOS'] <= 36.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.1017964071856285,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 36.000000 && feature.properties['VOTOS'] <= 37.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.1904191616766475,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 37.000000 && feature.properties['VOTOS'] <= 38.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.279041916167665,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 38.000000 && feature.properties['VOTOS'] <= 39.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.367664670658682,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 39.000000 && feature.properties['VOTOS'] <= 40.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.456287425149701,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 40.000000 && feature.properties['VOTOS'] <= 41.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.544910179640718,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 41.000000 && feature.properties['VOTOS'] <= 42.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.633532934131737,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 42.000000 && feature.properties['VOTOS'] <= 43.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.722155688622754,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 43.000000 && feature.properties['VOTOS'] <= 44.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.810778443113772,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 44.000000 && feature.properties['VOTOS'] <= 45.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.89940119760479,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 45.000000 && feature.properties['VOTOS'] <= 46.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 5.9880239520958085,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 46.000000 && feature.properties['VOTOS'] <= 47.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.076646706586827,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 47.000000 && feature.properties['VOTOS'] <= 48.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.165269461077845,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 48.000000 && feature.properties['VOTOS'] <= 49.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.253892215568863,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 49.000000 && feature.properties['VOTOS'] <= 50.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.342514970059881,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 50.000000 && feature.properties['VOTOS'] <= 51.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.431137724550898,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 51.000000 && feature.properties['VOTOS'] <= 52.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.519760479041916,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 52.000000 && feature.properties['VOTOS'] <= 53.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.608383233532934,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 53.000000 && feature.properties['VOTOS'] <= 54.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.697005988023952,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 54.000000 && feature.properties['VOTOS'] <= 55.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.78562874251497,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 55.000000 && feature.properties['VOTOS'] <= 56.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.874251497005988,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 56.000000 && feature.properties['VOTOS'] <= 57.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 6.962874251497007,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 57.000000 && feature.properties['VOTOS'] <= 58.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.051497005988024,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 58.000000 && feature.properties['VOTOS'] <= 59.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.140119760479043,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 59.000000 && feature.properties['VOTOS'] <= 60.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.22874251497006,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 60.000000 && feature.properties['VOTOS'] <= 61.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.317365269461078,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 61.000000 && feature.properties['VOTOS'] <= 62.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.405988023952096,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 62.000000 && feature.properties['VOTOS'] <= 63.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.494610778443114,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 63.000000 && feature.properties['VOTOS'] <= 64.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.583233532934132,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 64.000000 && feature.properties['VOTOS'] <= 65.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.67185628742515,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 65.000000 && feature.properties['VOTOS'] <= 66.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.7604790419161676,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 66.000000 && feature.properties['VOTOS'] <= 67.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.849101796407186,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 67.000000 && feature.properties['VOTOS'] <= 68.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 7.937724550898204,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 68.000000 && feature.properties['VOTOS'] <= 69.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.026347305389223,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 69.000000 && feature.properties['VOTOS'] <= 70.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.114970059880239,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 70.000000 && feature.properties['VOTOS'] <= 71.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.203592814371257,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 71.000000 && feature.properties['VOTOS'] <= 72.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.292215568862275,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 72.000000 && feature.properties['VOTOS'] <= 73.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.380838323353295,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 73.000000 && feature.properties['VOTOS'] <= 74.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.469461077844311,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 74.000000 && feature.properties['VOTOS'] <= 75.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.55808383233533,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 75.000000 && feature.properties['VOTOS'] <= 76.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.646706586826348,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 76.000000 && feature.properties['VOTOS'] <= 77.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.735329341317364,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 77.000000 && feature.properties['VOTOS'] <= 78.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.823952095808384,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 78.000000 && feature.properties['VOTOS'] <= 79.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 8.912574850299402,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 79.000000 && feature.properties['VOTOS'] <= 80.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.00119760479042,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 80.000000 && feature.properties['VOTOS'] <= 81.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.089820359281436,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 81.000000 && feature.properties['VOTOS'] <= 82.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.178443113772456,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 82.000000 && feature.properties['VOTOS'] <= 83.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.267065868263474,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 83.000000 && feature.properties['VOTOS'] <= 84.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.355688622754492,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 84.000000 && feature.properties['VOTOS'] <= 85.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.444311377245509,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 85.000000 && feature.properties['VOTOS'] <= 86.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.532934131736527,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 86.000000 && feature.properties['VOTOS'] <= 87.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.621556886227545,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 87.000000 && feature.properties['VOTOS'] <= 88.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.710179640718565,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 88.000000 && feature.properties['VOTOS'] <= 89.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.79880239520958,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 89.000000 && feature.properties['VOTOS'] <= 90.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.887425149700599,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 90.000000 && feature.properties['VOTOS'] <= 91.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 9.976047904191617,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 91.000000 && feature.properties['VOTOS'] <= 92.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.064670658682635,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 92.000000 && feature.properties['VOTOS'] <= 93.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.153293413173653,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 93.000000 && feature.properties['VOTOS'] <= 94.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.241916167664671,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 94.000000 && feature.properties['VOTOS'] <= 95.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.33053892215569,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 95.000000 && feature.properties['VOTOS'] <= 96.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.419161676646707,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 96.000000 && feature.properties['VOTOS'] <= 97.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.507784431137726,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 97.000000 && feature.properties['VOTOS'] <= 98.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.596407185628744,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 98.000000 && feature.properties['VOTOS'] <= 99.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.685029940119762,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 99.000000 && feature.properties['VOTOS'] <= 100.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.773652694610778,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 100.000000 && feature.properties['VOTOS'] <= 101.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.862275449101796,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 101.000000 && feature.properties['VOTOS'] <= 102.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 10.950898203592816,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 102.000000 && feature.properties['VOTOS'] <= 103.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.039520958083832,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 103.000000 && feature.properties['VOTOS'] <= 104.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.12814371257485,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 104.000000 && feature.properties['VOTOS'] <= 105.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.216766467065868,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 105.000000 && feature.properties['VOTOS'] <= 106.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.305389221556887,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 106.000000 && feature.properties['VOTOS'] <= 107.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.394011976047905,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 107.000000 && feature.properties['VOTOS'] <= 108.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.482634730538923,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 108.000000 && feature.properties['VOTOS'] <= 109.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.57125748502994,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 109.000000 && feature.properties['VOTOS'] <= 110.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.659880239520959,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 110.000000 && feature.properties['VOTOS'] <= 111.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.748502994011975,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 111.000000 && feature.properties['VOTOS'] <= 112.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.837125748502995,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 112.000000 && feature.properties['VOTOS'] <= 113.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 11.925748502994013,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 113.000000 && feature.properties['VOTOS'] <= 114.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.014371257485031,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 114.000000 && feature.properties['VOTOS'] <= 115.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.102994011976048,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 115.000000 && feature.properties['VOTOS'] <= 116.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.191616766467066,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 116.000000 && feature.properties['VOTOS'] <= 117.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.280239520958085,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 117.000000 && feature.properties['VOTOS'] <= 118.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.368862275449102,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 118.000000 && feature.properties['VOTOS'] <= 119.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.45748502994012,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 119.000000 && feature.properties['VOTOS'] <= 120.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.546107784431138,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 120.000000 && feature.properties['VOTOS'] <= 121.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.634730538922156,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 121.000000 && feature.properties['VOTOS'] <= 122.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.723353293413174,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 122.000000 && feature.properties['VOTOS'] <= 123.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.811976047904192,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 123.000000 && feature.properties['VOTOS'] <= 124.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.90059880239521,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 124.000000 && feature.properties['VOTOS'] <= 125.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 12.989221556886228,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 125.000000 && feature.properties['VOTOS'] <= 126.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.077844311377245,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 126.000000 && feature.properties['VOTOS'] <= 127.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.166467065868265,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 127.000000 && feature.properties['VOTOS'] <= 128.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.255089820359283,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 128.000000 && feature.properties['VOTOS'] <= 129.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.3437125748503,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 129.000000 && feature.properties['VOTOS'] <= 130.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.432335329341317,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 130.000000 && feature.properties['VOTOS'] <= 131.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.520958083832335,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 131.000000 && feature.properties['VOTOS'] <= 132.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.609580838323355,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 132.000000 && feature.properties['VOTOS'] <= 133.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.698203592814371,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 133.000000 && feature.properties['VOTOS'] <= 134.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.78682634730539,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 134.000000 && feature.properties['VOTOS'] <= 135.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.875449101796407,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 135.000000 && feature.properties['VOTOS'] <= 136.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 13.964071856287426,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 136.000000 && feature.properties['VOTOS'] <= 137.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.052694610778444,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 137.000000 && feature.properties['VOTOS'] <= 138.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.141317365269462,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 138.000000 && feature.properties['VOTOS'] <= 139.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.22994011976048,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 139.000000 && feature.properties['VOTOS'] <= 140.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.318562874251498,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 140.000000 && feature.properties['VOTOS'] <= 141.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.407185628742514,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 141.000000 && feature.properties['VOTOS'] <= 142.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.495808383233534,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 142.000000 && feature.properties['VOTOS'] <= 143.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.58443113772455,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 143.000000 && feature.properties['VOTOS'] <= 144.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.67305389221557,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 144.000000 && feature.properties['VOTOS'] <= 145.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.761676646706588,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 145.000000 && feature.properties['VOTOS'] <= 146.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.850299401197605,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 146.000000 && feature.properties['VOTOS'] <= 147.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 14.938922155688624,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 147.000000 && feature.properties['VOTOS'] <= 148.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.02754491017964,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 148.000000 && feature.properties['VOTOS'] <= 149.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.116167664670659,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 149.000000 && feature.properties['VOTOS'] <= 150.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.204790419161679,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 150.000000 && feature.properties['VOTOS'] <= 151.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.293413173652695,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 151.000000 && feature.properties['VOTOS'] <= 152.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.382035928143713,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 152.000000 && feature.properties['VOTOS'] <= 153.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.47065868263473,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 153.000000 && feature.properties['VOTOS'] <= 154.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.55928143712575,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 154.000000 && feature.properties['VOTOS'] <= 155.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.647904191616767,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 155.000000 && feature.properties['VOTOS'] <= 156.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.736526946107784,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 156.000000 && feature.properties['VOTOS'] <= 157.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.825149700598804,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 157.000000 && feature.properties['VOTOS'] <= 158.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 15.91377245508982,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 158.000000 && feature.properties['VOTOS'] <= 159.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.00239520958084,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 159.000000 && feature.properties['VOTOS'] <= 160.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.09101796407186,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 160.000000 && feature.properties['VOTOS'] <= 161.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.179640718562872,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 161.000000 && feature.properties['VOTOS'] <= 162.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.268263473053892,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 162.000000 && feature.properties['VOTOS'] <= 163.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.356886227544912,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 163.000000 && feature.properties['VOTOS'] <= 164.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.44550898203593,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 164.000000 && feature.properties['VOTOS'] <= 165.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.53413173652695,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 165.000000 && feature.properties['VOTOS'] <= 166.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.622754491017965,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 166.000000 && feature.properties['VOTOS'] <= 167.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.711377245508984,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['VOTOS'] >= 167.000000 && feature.properties['VOTOS'] <= 168.000000 ) {
+                return {
+                pane: 'pane_votos_ronaldo_por_local_1',
+                radius: 16.799999999999997,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,67,38,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_votos_ronaldo_por_local_1');
+        map.getPane('pane_votos_ronaldo_por_local_1').style.zIndex = 401;
+        map.getPane('pane_votos_ronaldo_por_local_1').style['mix-blend-mode'] = 'normal';
+        var layer_votos_ronaldo_por_local_1 = new L.geoJson(json_votos_ronaldo_por_local_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_votos_ronaldo_por_local_1',
+            layerName: 'layer_votos_ronaldo_por_local_1',
+            pane: 'pane_votos_ronaldo_por_local_1',
+            onEachFeature: pop_votos_ronaldo_por_local_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_votos_ronaldo_por_local_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_votos_ronaldo_por_local_1);
+        map.addLayer(layer_votos_ronaldo_por_local_1);
+        setBounds();
+        </script>
+    </body>
+</html>
