@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecione um Mapa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #mapFrame {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        #mapSelector {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px;
+            font-size: 14px;
+            width: 200px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <select id="mapSelector">
+        <option value="Antonio Leonel - Butica - 13468 - PT/Antonio Leonel - Butica - 13468 - PT.html">Antonio Leonel - Butica - 13468 - PT</option>
+        <option value="Fernanda Miranda - 50999 - PSOL/Fernanda Miranda - 50999 - PSOL.html">Fernanda Miranda - 50999 - PSOL</option>
+        <option value="Ivan Duarte - 13513 - PT/Ivan Duarte - 13513 - PT.html">Ivan Duarte - 13513 - PT</option>
+        <option value="Miriam Marroni - 13613 - PT/Miriam Marroni - 13613 - PT.html">Miriam Marroni - 13613 - PT</option>
+        <option value="Ronaldo Quadrado - 13333 - PT/Ronaldo Quadrado - 13333 - PT.html">Ronaldo Quadrado - 13333 - PT</option>
+        <option value="Jurandir Silva - 50555 - PSOL/Jurandir Silva - 50555 - PSOL.html">Jurandir Silva - 50555 - PSOL</option>
+    </select>
+
+    <iframe id="mapFrame" src="Antonio Leonel - Butica - 13468 - PT/Antonio Leonel - Butica - 13468 - PT.html"></iframe>
+
+    <script>
+        // Atualiza o iframe quando um novo mapa é selecionado
+        document.getElementById('mapSelector').addEventListener('change', function() {
+            var selectedMap = this.value;
+            document.getElementById('mapFrame').src = selectedMap;
+        });
+    </script>
+</body>
+</html>
+

@@ -2,50 +2,45 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapas Interativos</title>
+    <title>Página de Boas-Vindas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-        }
-        #mapFrame {
-            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
-            border: none;
+            background-color: #f4f4f4;
         }
-        #mapSelector {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px;
-            font-size: 14px;
-            width: 150px;
-            z-index: 1000;
+        .welcome-message {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <!-- Menu suspenso para escolher o mapa -->
-    <select id="mapSelector">
-        <option value="Antonio Leonel - Butica - 13468 - PT/Antonio Leonel - Butica - 13468 - PT.html">Antonio Leonel - Butica - 13468 - PT</option>
-        <option value="Fernanda Miranda - 50999 - PSOL/Fernanda Miranda - 50999 - PSOL.html">Fernanda Miranda - 50999 - PSOL</option>
-        <option value="Ivan Duarte - 13513 - PT/Ivan Duarte - 13513 - PT.html">Ivan Duarte - 13513 - PT</option>
-        <option value="Miriam Marroni - 13613 - PT/Miriam Marroni - 13613 - PT.html">Miriam Marroni - 13613 - PT</option>
-        <option value="Ronaldo Quadrado - 13333 - PT/Ronaldo Quadrado - 13333 - PT.html">Ronaldo Quadrado - 13333 - PT</option>
-    </select>
-    
-    <!-- Iframe para exibir o mapa selecionado -->
-    <iframe id="mapFrame" src="Antonio Leonel - Butica - 13468 - PT/Antonio Leonel - Butica - 13468 - PT.html"></iframe>
-
-    <script>
-        // Atualiza o iframe quando um novo mapa é selecionado
-        document.getElementById('mapSelector').addEventListener('change', function() {
-            var selectedMap = this.value;
-            document.getElementById('mapFrame').src = selectedMap;
-        });
-    </script>
+    <div class="welcome-message">
+        <h1>Bem-vindo ao Meu Site de Mapas Interativos!</h1>
+        <p>Olá! Meu nome é Vítor Gomes, e sou o criador deste projeto.</p>
+        <p>Aqui você pode explorar diferentes mapas interativos que representam os resultados das eleições municipais em Pelotas/2024.</p>
+        <button class="button" onclick="window.location.href='mapas.html'">Ir para os Mapas</button>
+    </div>
 </body>
 </html>
 
