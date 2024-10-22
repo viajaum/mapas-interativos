@@ -64,9 +64,21 @@
 
     <!-- Contador de visitas centralizado na parte inferior -->
     <div class="contador">
-        <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=Visits&query=value&url=https://api.countapi.xyz/hit/viajaum.mapas-interativos" alt="contador de visitas">
+        <p>Visitas: <span id="visit-count">Carregando...</span></p>
     </div>
-    
+
+    <script>
+      // Chamada à API do CountAPI
+      fetch('https://api.countapi.xyz/hit/viajaum.mapas-interativos')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('visit-count').innerText = data.value;
+        })
+        .catch(error => {
+            console.error('Erro ao obter contador:', error);
+            document.getElementById('visit-count').innerText = 'Erro';
+        });
+    </script>
 </body>
 </html>
 
