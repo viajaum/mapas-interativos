@@ -61,23 +61,6 @@
         <p>Aqui você pode explorar diferentes mapas que representam resultados das eleições municipais em Pelotas/2024.</p>
         <button class="button" onclick="window.location.href='mapas.html'">Ir para os Mapas</button>
     </div>
-
-    <!-- Contador de visitas centralizado na parte inferior -->
-    <div class="contador">
-        <p>Visitas: <span id="visit-count">Carregando...</span></p>
-    </div>
-
-    <script>
-      // Chamada à API do CountAPI
-      fetch('https://api.countapi.xyz/hit/viajaum.mapas-interativos')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('visit-count').innerText = data.value;
-        })
-        .catch(error => {
-            console.error('Erro ao obter contador:', error);
-            document.getElementById('visit-count').innerText = 'Erro';
-        });
     </script>
 </body>
 </html>
