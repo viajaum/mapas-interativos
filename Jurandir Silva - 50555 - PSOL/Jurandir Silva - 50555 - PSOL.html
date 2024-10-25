@@ -33,11 +33,11 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/votosjurandir_1.js"></script>
+        <script src="data/votaovereadores_1.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-31.84380733671889,-52.49536629643046],[-31.674341274211763,-52.19635202256292]]);
+        }).fitBounds([[-31.86487509149077,-52.586659900441965],[-31.525942966476517,-51.954627257285615]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -88,19 +88,14 @@
         });
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
-        function pop_votosjurandir_1(feature, layer) {
+        function pop_votaovereadores_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['LATITUDE'] !== null ? autolinker.link(feature.properties['LATITUDE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>NM_LOCAL</strong><br />' + (feature.properties['NM_LOCAL'] !== null ? autolinker.link(feature.properties['NM_LOCAL'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['LOGITUDE'] !== null ? autolinker.link(feature.properties['LOGITUDE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['LOCAL'] !== null ? autolinker.link(feature.properties['LOCAL'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['VOTOS'] !== null ? autolinker.link(feature.properties['VOTOS'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">50555</th>\
+                        <td>' + (feature.properties['50555'] !== null ? autolinker.link(feature.properties['50555'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -110,10 +105,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_votosjurandir_1_0(feature) {
-            if (feature.properties['VOTOS'] >= 0.000000 && feature.properties['VOTOS'] <= 1.000000 ) {
+        function style_votaovereadores_1_0(feature) {
+            if (feature.properties['50555'] >= 0.000000 && feature.properties['50555'] <= 1.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
+                pane: 'pane_votaovereadores_1',
                 radius: 2.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -123,14 +118,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 1.000000 && feature.properties['VOTOS'] <= 2.000000 ) {
+            if (feature.properties['50555'] >= 1.000000 && feature.properties['50555'] <= 2.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.08708,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.087074829931973,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -139,14 +134,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 2.000000 && feature.properties['VOTOS'] <= 3.000000 ) {
+            if (feature.properties['50555'] >= 2.000000 && feature.properties['50555'] <= 3.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.17414,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.1741496598639456,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -155,14 +150,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 3.000000 && feature.properties['VOTOS'] <= 4.000000 ) {
+            if (feature.properties['50555'] >= 3.000000 && feature.properties['50555'] <= 4.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.26122,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.2612244897959184,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -171,14 +166,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 4.000000 && feature.properties['VOTOS'] <= 5.000000 ) {
+            if (feature.properties['50555'] >= 4.000000 && feature.properties['50555'] <= 5.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.3483,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.348299319727891,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -187,14 +182,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 5.000000 && feature.properties['VOTOS'] <= 6.000000 ) {
+            if (feature.properties['50555'] >= 5.000000 && feature.properties['50555'] <= 6.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.43538,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.435374149659864,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -203,14 +198,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 6.000000 && feature.properties['VOTOS'] <= 7.000000 ) {
+            if (feature.properties['50555'] >= 6.000000 && feature.properties['50555'] <= 7.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.52244,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.522448979591837,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -219,14 +214,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 7.000000 && feature.properties['VOTOS'] <= 8.000000 ) {
+            if (feature.properties['50555'] >= 7.000000 && feature.properties['50555'] <= 8.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.60952,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.6095238095238096,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -235,14 +230,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 8.000000 && feature.properties['VOTOS'] <= 9.000000 ) {
+            if (feature.properties['50555'] >= 8.000000 && feature.properties['50555'] <= 9.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.6966,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.6965986394557824,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -251,14 +246,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 9.000000 && feature.properties['VOTOS'] <= 10.000000 ) {
+            if (feature.properties['50555'] >= 9.000000 && feature.properties['50555'] <= 10.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.78368,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.783673469387755,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -267,14 +262,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 10.000000 && feature.properties['VOTOS'] <= 11.000000 ) {
+            if (feature.properties['50555'] >= 10.000000 && feature.properties['50555'] <= 11.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.87074,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.870748299319728,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -283,14 +278,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 11.000000 && feature.properties['VOTOS'] <= 12.000000 ) {
+            if (feature.properties['50555'] >= 11.000000 && feature.properties['50555'] <= 12.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 2.95782,
+                pane: 'pane_votaovereadores_1',
+                radius: 2.9578231292517008,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -299,14 +294,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 12.000000 && feature.properties['VOTOS'] <= 13.000000 ) {
+            if (feature.properties['50555'] >= 12.000000 && feature.properties['50555'] <= 13.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.0449,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.0448979591836736,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -315,14 +310,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 13.000000 && feature.properties['VOTOS'] <= 14.000000 ) {
+            if (feature.properties['50555'] >= 13.000000 && feature.properties['50555'] <= 14.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.13198,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.1319727891156464,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -331,14 +326,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 14.000000 && feature.properties['VOTOS'] <= 15.000000 ) {
+            if (feature.properties['50555'] >= 14.000000 && feature.properties['50555'] <= 15.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.21904,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.219047619047619,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -347,14 +342,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 15.000000 && feature.properties['VOTOS'] <= 16.000000 ) {
+            if (feature.properties['50555'] >= 15.000000 && feature.properties['50555'] <= 16.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.30612,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.3061224489795915,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -363,14 +358,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 16.000000 && feature.properties['VOTOS'] <= 17.000000 ) {
+            if (feature.properties['50555'] >= 16.000000 && feature.properties['50555'] <= 17.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.3932,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.3931972789115648,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -379,14 +374,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 17.000000 && feature.properties['VOTOS'] <= 18.000000 ) {
+            if (feature.properties['50555'] >= 17.000000 && feature.properties['50555'] <= 18.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.48028,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.4802721088435375,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -395,14 +390,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 18.000000 && feature.properties['VOTOS'] <= 19.000000 ) {
+            if (feature.properties['50555'] >= 18.000000 && feature.properties['50555'] <= 19.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.56734,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.5673469387755103,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -411,14 +406,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 19.000000 && feature.properties['VOTOS'] <= 20.000000 ) {
+            if (feature.properties['50555'] >= 19.000000 && feature.properties['50555'] <= 20.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.65442,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.654421768707483,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -427,14 +422,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 20.000000 && feature.properties['VOTOS'] <= 21.000000 ) {
+            if (feature.properties['50555'] >= 20.000000 && feature.properties['50555'] <= 21.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.7415,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.741496598639456,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -443,14 +438,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 21.000000 && feature.properties['VOTOS'] <= 22.000000 ) {
+            if (feature.properties['50555'] >= 21.000000 && feature.properties['50555'] <= 22.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.82858,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.8285714285714287,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -459,14 +454,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 22.000000 && feature.properties['VOTOS'] <= 23.000000 ) {
+            if (feature.properties['50555'] >= 22.000000 && feature.properties['50555'] <= 23.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 3.91564,
+                pane: 'pane_votaovereadores_1',
+                radius: 3.9156462585034015,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -475,14 +470,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 23.000000 && feature.properties['VOTOS'] <= 24.000000 ) {
+            if (feature.properties['50555'] >= 23.000000 && feature.properties['50555'] <= 24.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.00272,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.002721088435374,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -491,14 +486,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 24.000000 && feature.properties['VOTOS'] <= 25.000000 ) {
+            if (feature.properties['50555'] >= 24.000000 && feature.properties['50555'] <= 25.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.0898,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.089795918367347,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -507,14 +502,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 25.000000 && feature.properties['VOTOS'] <= 26.000000 ) {
+            if (feature.properties['50555'] >= 25.000000 && feature.properties['50555'] <= 26.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.17688,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.17687074829932,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -523,14 +518,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 26.000000 && feature.properties['VOTOS'] <= 27.000000 ) {
+            if (feature.properties['50555'] >= 26.000000 && feature.properties['50555'] <= 27.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.26394,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.263945578231293,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -539,14 +534,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 27.000000 && feature.properties['VOTOS'] <= 28.000000 ) {
+            if (feature.properties['50555'] >= 27.000000 && feature.properties['50555'] <= 28.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.35102,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.351020408163265,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -555,14 +550,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 28.000000 && feature.properties['VOTOS'] <= 29.000000 ) {
+            if (feature.properties['50555'] >= 28.000000 && feature.properties['50555'] <= 29.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.4381,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.438095238095238,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -571,14 +566,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 29.000000 && feature.properties['VOTOS'] <= 30.000000 ) {
+            if (feature.properties['50555'] >= 29.000000 && feature.properties['50555'] <= 30.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.52518,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.525170068027212,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -587,14 +582,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 30.000000 && feature.properties['VOTOS'] <= 31.000000 ) {
+            if (feature.properties['50555'] >= 30.000000 && feature.properties['50555'] <= 31.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.61224,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.612244897959183,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -603,14 +598,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 31.000000 && feature.properties['VOTOS'] <= 32.000000 ) {
+            if (feature.properties['50555'] >= 31.000000 && feature.properties['50555'] <= 32.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.69932,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.699319727891156,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -619,14 +614,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 32.000000 && feature.properties['VOTOS'] <= 33.000000 ) {
+            if (feature.properties['50555'] >= 32.000000 && feature.properties['50555'] <= 33.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.7864,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.7863945578231295,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -635,14 +630,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 33.000000 && feature.properties['VOTOS'] <= 34.000000 ) {
+            if (feature.properties['50555'] >= 33.000000 && feature.properties['50555'] <= 34.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.87346,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.873469387755103,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -651,14 +646,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 34.000000 && feature.properties['VOTOS'] <= 35.000000 ) {
+            if (feature.properties['50555'] >= 34.000000 && feature.properties['50555'] <= 35.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 4.96054,
+                pane: 'pane_votaovereadores_1',
+                radius: 4.960544217687075,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -667,14 +662,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 35.000000 && feature.properties['VOTOS'] <= 36.000000 ) {
+            if (feature.properties['50555'] >= 35.000000 && feature.properties['50555'] <= 36.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.04762,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.0476190476190474,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -683,14 +678,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 36.000000 && feature.properties['VOTOS'] <= 37.000000 ) {
+            if (feature.properties['50555'] >= 36.000000 && feature.properties['50555'] <= 37.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.1347,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.134693877551021,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -699,14 +694,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 37.000000 && feature.properties['VOTOS'] <= 38.000000 ) {
+            if (feature.properties['50555'] >= 37.000000 && feature.properties['50555'] <= 38.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.22176,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.221768707482994,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -715,14 +710,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 38.000000 && feature.properties['VOTOS'] <= 39.000000 ) {
+            if (feature.properties['50555'] >= 38.000000 && feature.properties['50555'] <= 39.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.30884,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.308843537414966,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -731,14 +726,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 39.000000 && feature.properties['VOTOS'] <= 40.000000 ) {
+            if (feature.properties['50555'] >= 39.000000 && feature.properties['50555'] <= 40.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.39592,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.395918367346939,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -747,14 +742,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 40.000000 && feature.properties['VOTOS'] <= 41.000000 ) {
+            if (feature.properties['50555'] >= 40.000000 && feature.properties['50555'] <= 41.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.483,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.482993197278912,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -763,14 +758,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 41.000000 && feature.properties['VOTOS'] <= 42.000000 ) {
+            if (feature.properties['50555'] >= 41.000000 && feature.properties['50555'] <= 42.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.57006,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.570068027210885,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -779,14 +774,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 42.000000 && feature.properties['VOTOS'] <= 43.000000 ) {
+            if (feature.properties['50555'] >= 42.000000 && feature.properties['50555'] <= 43.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.65714,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.6571428571428575,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -795,14 +790,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 43.000000 && feature.properties['VOTOS'] <= 44.000000 ) {
+            if (feature.properties['50555'] >= 43.000000 && feature.properties['50555'] <= 44.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.74422,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.74421768707483,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -811,14 +806,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 44.000000 && feature.properties['VOTOS'] <= 45.000000 ) {
+            if (feature.properties['50555'] >= 44.000000 && feature.properties['50555'] <= 45.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.8313,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.831292517006803,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -827,14 +822,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 45.000000 && feature.properties['VOTOS'] <= 46.000000 ) {
+            if (feature.properties['50555'] >= 45.000000 && feature.properties['50555'] <= 46.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 5.91836,
+                pane: 'pane_votaovereadores_1',
+                radius: 5.918367346938775,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -843,14 +838,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 46.000000 && feature.properties['VOTOS'] <= 47.000000 ) {
+            if (feature.properties['50555'] >= 46.000000 && feature.properties['50555'] <= 47.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.00544,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.005442176870749,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -859,14 +854,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 47.000000 && feature.properties['VOTOS'] <= 48.000000 ) {
+            if (feature.properties['50555'] >= 47.000000 && feature.properties['50555'] <= 48.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.09252,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.092517006802721,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -875,14 +870,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 48.000000 && feature.properties['VOTOS'] <= 49.000000 ) {
+            if (feature.properties['50555'] >= 48.000000 && feature.properties['50555'] <= 49.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.1796,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.179591836734694,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -891,14 +886,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 49.000000 && feature.properties['VOTOS'] <= 50.000000 ) {
+            if (feature.properties['50555'] >= 49.000000 && feature.properties['50555'] <= 50.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.26666,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.266666666666667,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -907,14 +902,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 50.000000 && feature.properties['VOTOS'] <= 51.000000 ) {
+            if (feature.properties['50555'] >= 50.000000 && feature.properties['50555'] <= 51.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.35374,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.35374149659864,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -923,14 +918,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 51.000000 && feature.properties['VOTOS'] <= 52.000000 ) {
+            if (feature.properties['50555'] >= 51.000000 && feature.properties['50555'] <= 52.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.44082,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.440816326530613,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -939,14 +934,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 52.000000 && feature.properties['VOTOS'] <= 53.000000 ) {
+            if (feature.properties['50555'] >= 52.000000 && feature.properties['50555'] <= 53.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.5279,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.527891156462585,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -955,14 +950,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 53.000000 && feature.properties['VOTOS'] <= 54.000000 ) {
+            if (feature.properties['50555'] >= 53.000000 && feature.properties['50555'] <= 54.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.61496,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.614965986394559,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -971,14 +966,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 54.000000 && feature.properties['VOTOS'] <= 55.000000 ) {
+            if (feature.properties['50555'] >= 54.000000 && feature.properties['50555'] <= 55.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.70204,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.702040816326531,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -987,14 +982,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 55.000000 && feature.properties['VOTOS'] <= 56.000000 ) {
+            if (feature.properties['50555'] >= 55.000000 && feature.properties['50555'] <= 56.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.78912,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.789115646258503,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1003,14 +998,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 56.000000 && feature.properties['VOTOS'] <= 57.000000 ) {
+            if (feature.properties['50555'] >= 56.000000 && feature.properties['50555'] <= 57.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.8762,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.876190476190477,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1019,14 +1014,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 57.000000 && feature.properties['VOTOS'] <= 58.000000 ) {
+            if (feature.properties['50555'] >= 57.000000 && feature.properties['50555'] <= 58.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 6.96326,
+                pane: 'pane_votaovereadores_1',
+                radius: 6.963265306122449,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1035,14 +1030,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 58.000000 && feature.properties['VOTOS'] <= 59.000000 ) {
+            if (feature.properties['50555'] >= 58.000000 && feature.properties['50555'] <= 59.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.05034,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.050340136054422,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1051,14 +1046,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 59.000000 && feature.properties['VOTOS'] <= 60.000000 ) {
+            if (feature.properties['50555'] >= 59.000000 && feature.properties['50555'] <= 60.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.13742,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.137414965986395,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1067,14 +1062,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 60.000000 && feature.properties['VOTOS'] <= 61.000000 ) {
+            if (feature.properties['50555'] >= 60.000000 && feature.properties['50555'] <= 61.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.22448,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.224489795918367,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1083,14 +1078,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 61.000000 && feature.properties['VOTOS'] <= 62.000000 ) {
+            if (feature.properties['50555'] >= 61.000000 && feature.properties['50555'] <= 62.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.31156,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.31156462585034,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1099,14 +1094,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 62.000000 && feature.properties['VOTOS'] <= 63.000000 ) {
+            if (feature.properties['50555'] >= 62.000000 && feature.properties['50555'] <= 63.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.39864,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.398639455782313,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1115,14 +1110,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 63.000000 && feature.properties['VOTOS'] <= 64.000000 ) {
+            if (feature.properties['50555'] >= 63.000000 && feature.properties['50555'] <= 64.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.48572,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.485714285714287,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1131,14 +1126,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 64.000000 && feature.properties['VOTOS'] <= 65.000000 ) {
+            if (feature.properties['50555'] >= 64.000000 && feature.properties['50555'] <= 65.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.57278,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.572789115646259,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1147,14 +1142,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 65.000000 && feature.properties['VOTOS'] <= 66.000000 ) {
+            if (feature.properties['50555'] >= 65.000000 && feature.properties['50555'] <= 66.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.65986,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.659863945578231,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1163,14 +1158,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 66.000000 && feature.properties['VOTOS'] <= 67.000000 ) {
+            if (feature.properties['50555'] >= 66.000000 && feature.properties['50555'] <= 67.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.74694,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.746938775510205,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1179,14 +1174,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 67.000000 && feature.properties['VOTOS'] <= 68.000000 ) {
+            if (feature.properties['50555'] >= 67.000000 && feature.properties['50555'] <= 68.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.83402,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.834013605442177,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1195,14 +1190,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 68.000000 && feature.properties['VOTOS'] <= 69.000000 ) {
+            if (feature.properties['50555'] >= 68.000000 && feature.properties['50555'] <= 69.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 7.92108,
+                pane: 'pane_votaovereadores_1',
+                radius: 7.92108843537415,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1211,14 +1206,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 69.000000 && feature.properties['VOTOS'] <= 70.000000 ) {
+            if (feature.properties['50555'] >= 69.000000 && feature.properties['50555'] <= 70.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.00816,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.008163265306123,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1227,14 +1222,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 70.000000 && feature.properties['VOTOS'] <= 71.000000 ) {
+            if (feature.properties['50555'] >= 70.000000 && feature.properties['50555'] <= 71.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.09524,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.095238095238095,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1243,14 +1238,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 71.000000 && feature.properties['VOTOS'] <= 72.000000 ) {
+            if (feature.properties['50555'] >= 71.000000 && feature.properties['50555'] <= 72.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.18232,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.182312925170068,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1259,14 +1254,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 72.000000 && feature.properties['VOTOS'] <= 73.000000 ) {
+            if (feature.properties['50555'] >= 72.000000 && feature.properties['50555'] <= 73.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.26938,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.269387755102041,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1275,14 +1270,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 73.000000 && feature.properties['VOTOS'] <= 74.000000 ) {
+            if (feature.properties['50555'] >= 73.000000 && feature.properties['50555'] <= 74.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.35646,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.356462585034015,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1291,14 +1286,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 74.000000 && feature.properties['VOTOS'] <= 75.000000 ) {
+            if (feature.properties['50555'] >= 74.000000 && feature.properties['50555'] <= 75.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.44354,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.443537414965988,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1307,14 +1302,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 75.000000 && feature.properties['VOTOS'] <= 76.000000 ) {
+            if (feature.properties['50555'] >= 75.000000 && feature.properties['50555'] <= 76.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.53062,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.53061224489796,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1323,14 +1318,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 76.000000 && feature.properties['VOTOS'] <= 77.000000 ) {
+            if (feature.properties['50555'] >= 76.000000 && feature.properties['50555'] <= 77.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.61768,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.617687074829933,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1339,14 +1334,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 77.000000 && feature.properties['VOTOS'] <= 78.000000 ) {
+            if (feature.properties['50555'] >= 77.000000 && feature.properties['50555'] <= 78.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.70476,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.704761904761906,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1355,14 +1350,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 78.000000 && feature.properties['VOTOS'] <= 79.000000 ) {
+            if (feature.properties['50555'] >= 78.000000 && feature.properties['50555'] <= 79.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.79184,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.791836734693877,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1371,14 +1366,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 79.000000 && feature.properties['VOTOS'] <= 80.000000 ) {
+            if (feature.properties['50555'] >= 79.000000 && feature.properties['50555'] <= 80.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.87892,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.87891156462585,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1387,14 +1382,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 80.000000 && feature.properties['VOTOS'] <= 81.000000 ) {
+            if (feature.properties['50555'] >= 80.000000 && feature.properties['50555'] <= 81.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 8.96598,
+                pane: 'pane_votaovereadores_1',
+                radius: 8.965986394557824,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1403,14 +1398,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 81.000000 && feature.properties['VOTOS'] <= 82.000000 ) {
+            if (feature.properties['50555'] >= 81.000000 && feature.properties['50555'] <= 82.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.05306,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.053061224489795,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1419,14 +1414,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 82.000000 && feature.properties['VOTOS'] <= 83.000000 ) {
+            if (feature.properties['50555'] >= 82.000000 && feature.properties['50555'] <= 83.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.14014,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.14013605442177,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1435,14 +1430,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 83.000000 && feature.properties['VOTOS'] <= 84.000000 ) {
+            if (feature.properties['50555'] >= 83.000000 && feature.properties['50555'] <= 84.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.22722,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.227210884353742,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1451,14 +1446,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 84.000000 && feature.properties['VOTOS'] <= 85.000000 ) {
+            if (feature.properties['50555'] >= 84.000000 && feature.properties['50555'] <= 85.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.31428,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.314285714285715,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1467,14 +1462,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 85.000000 && feature.properties['VOTOS'] <= 86.000000 ) {
+            if (feature.properties['50555'] >= 85.000000 && feature.properties['50555'] <= 86.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.40136,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.401360544217688,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1483,14 +1478,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 86.000000 && feature.properties['VOTOS'] <= 87.000000 ) {
+            if (feature.properties['50555'] >= 86.000000 && feature.properties['50555'] <= 87.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.48844,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.48843537414966,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1499,14 +1494,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 87.000000 && feature.properties['VOTOS'] <= 88.000000 ) {
+            if (feature.properties['50555'] >= 87.000000 && feature.properties['50555'] <= 88.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.57552,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.575510204081635,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1515,14 +1510,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 88.000000 && feature.properties['VOTOS'] <= 89.000000 ) {
+            if (feature.properties['50555'] >= 88.000000 && feature.properties['50555'] <= 89.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.66258,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.662585034013606,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1531,14 +1526,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 89.000000 && feature.properties['VOTOS'] <= 90.000000 ) {
+            if (feature.properties['50555'] >= 89.000000 && feature.properties['50555'] <= 90.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.74966,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.749659863945578,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1547,14 +1542,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 90.000000 && feature.properties['VOTOS'] <= 91.000000 ) {
+            if (feature.properties['50555'] >= 90.000000 && feature.properties['50555'] <= 91.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.83674,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.83673469387755,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1563,14 +1558,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 91.000000 && feature.properties['VOTOS'] <= 92.000000 ) {
+            if (feature.properties['50555'] >= 91.000000 && feature.properties['50555'] <= 92.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 9.9238,
+                pane: 'pane_votaovereadores_1',
+                radius: 9.923809523809524,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1579,14 +1574,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 92.000000 && feature.properties['VOTOS'] <= 93.000000 ) {
+            if (feature.properties['50555'] >= 92.000000 && feature.properties['50555'] <= 93.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.01088,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.010884353741497,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1595,14 +1590,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 93.000000 && feature.properties['VOTOS'] <= 94.000000 ) {
+            if (feature.properties['50555'] >= 93.000000 && feature.properties['50555'] <= 94.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.09796,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.09795918367347,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1611,14 +1606,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 94.000000 && feature.properties['VOTOS'] <= 95.000000 ) {
+            if (feature.properties['50555'] >= 94.000000 && feature.properties['50555'] <= 95.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.18504,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.185034013605442,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1627,14 +1622,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 95.000000 && feature.properties['VOTOS'] <= 96.000000 ) {
+            if (feature.properties['50555'] >= 95.000000 && feature.properties['50555'] <= 96.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.2721,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.272108843537415,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1643,14 +1638,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 96.000000 && feature.properties['VOTOS'] <= 97.000000 ) {
+            if (feature.properties['50555'] >= 96.000000 && feature.properties['50555'] <= 97.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.35918,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.359183673469389,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1659,14 +1654,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 97.000000 && feature.properties['VOTOS'] <= 98.000000 ) {
+            if (feature.properties['50555'] >= 97.000000 && feature.properties['50555'] <= 98.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.44626,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.446258503401362,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1675,14 +1670,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 98.000000 && feature.properties['VOTOS'] <= 99.000000 ) {
+            if (feature.properties['50555'] >= 98.000000 && feature.properties['50555'] <= 99.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.53334,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.533333333333333,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1691,14 +1686,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 99.000000 && feature.properties['VOTOS'] <= 100.000000 ) {
+            if (feature.properties['50555'] >= 99.000000 && feature.properties['50555'] <= 100.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.6204,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.620408163265306,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1707,14 +1702,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 100.000000 && feature.properties['VOTOS'] <= 101.000000 ) {
+            if (feature.properties['50555'] >= 100.000000 && feature.properties['50555'] <= 101.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.70748,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.70748299319728,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1723,14 +1718,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 101.000000 && feature.properties['VOTOS'] <= 102.000000 ) {
+            if (feature.properties['50555'] >= 101.000000 && feature.properties['50555'] <= 102.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.79456,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.794557823129253,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1739,14 +1734,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 102.000000 && feature.properties['VOTOS'] <= 103.000000 ) {
+            if (feature.properties['50555'] >= 102.000000 && feature.properties['50555'] <= 103.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.88164,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.881632653061226,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1755,14 +1750,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 103.000000 && feature.properties['VOTOS'] <= 104.000000 ) {
+            if (feature.properties['50555'] >= 103.000000 && feature.properties['50555'] <= 104.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 10.9687,
+                pane: 'pane_votaovereadores_1',
+                radius: 10.968707482993198,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1771,14 +1766,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 104.000000 && feature.properties['VOTOS'] <= 105.000000 ) {
+            if (feature.properties['50555'] >= 104.000000 && feature.properties['50555'] <= 105.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.05578,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.05578231292517,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1787,14 +1782,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 105.000000 && feature.properties['VOTOS'] <= 106.000000 ) {
+            if (feature.properties['50555'] >= 105.000000 && feature.properties['50555'] <= 106.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.14286,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.142857142857142,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1803,14 +1798,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 106.000000 && feature.properties['VOTOS'] <= 107.000000 ) {
+            if (feature.properties['50555'] >= 106.000000 && feature.properties['50555'] <= 107.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.22994,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.229931972789117,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1819,14 +1814,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 107.000000 && feature.properties['VOTOS'] <= 108.000000 ) {
+            if (feature.properties['50555'] >= 107.000000 && feature.properties['50555'] <= 108.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.317,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.317006802721089,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1835,14 +1830,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 108.000000 && feature.properties['VOTOS'] <= 109.000000 ) {
+            if (feature.properties['50555'] >= 108.000000 && feature.properties['50555'] <= 109.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.40408,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.404081632653062,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1851,14 +1846,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 109.000000 && feature.properties['VOTOS'] <= 110.000000 ) {
+            if (feature.properties['50555'] >= 109.000000 && feature.properties['50555'] <= 110.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.49116,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.491156462585034,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1867,14 +1862,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 110.000000 && feature.properties['VOTOS'] <= 111.000000 ) {
+            if (feature.properties['50555'] >= 110.000000 && feature.properties['50555'] <= 111.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.57824,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.578231292517007,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1883,14 +1878,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 111.000000 && feature.properties['VOTOS'] <= 112.000000 ) {
+            if (feature.properties['50555'] >= 111.000000 && feature.properties['50555'] <= 112.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.6653,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.66530612244898,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1899,14 +1894,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 112.000000 && feature.properties['VOTOS'] <= 113.000000 ) {
+            if (feature.properties['50555'] >= 112.000000 && feature.properties['50555'] <= 113.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.75238,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.752380952380953,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1915,14 +1910,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 113.000000 && feature.properties['VOTOS'] <= 114.000000 ) {
+            if (feature.properties['50555'] >= 113.000000 && feature.properties['50555'] <= 114.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.83946,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.839455782312927,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1931,14 +1926,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 114.000000 && feature.properties['VOTOS'] <= 115.000000 ) {
+            if (feature.properties['50555'] >= 114.000000 && feature.properties['50555'] <= 115.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 11.92654,
+                pane: 'pane_votaovereadores_1',
+                radius: 11.926530612244898,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1947,14 +1942,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 115.000000 && feature.properties['VOTOS'] <= 116.000000 ) {
+            if (feature.properties['50555'] >= 115.000000 && feature.properties['50555'] <= 116.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.0136,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.013605442176871,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1963,14 +1958,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 116.000000 && feature.properties['VOTOS'] <= 117.000000 ) {
+            if (feature.properties['50555'] >= 116.000000 && feature.properties['50555'] <= 117.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.10068,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.100680272108844,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1979,14 +1974,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 117.000000 && feature.properties['VOTOS'] <= 118.000000 ) {
+            if (feature.properties['50555'] >= 117.000000 && feature.properties['50555'] <= 118.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.18776,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.187755102040818,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1995,14 +1990,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 118.000000 && feature.properties['VOTOS'] <= 119.000000 ) {
+            if (feature.properties['50555'] >= 118.000000 && feature.properties['50555'] <= 119.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.27482,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.27482993197279,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2011,14 +2006,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 119.000000 && feature.properties['VOTOS'] <= 120.000000 ) {
+            if (feature.properties['50555'] >= 119.000000 && feature.properties['50555'] <= 120.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.3619,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.361904761904762,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2027,14 +2022,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 120.000000 && feature.properties['VOTOS'] <= 121.000000 ) {
+            if (feature.properties['50555'] >= 120.000000 && feature.properties['50555'] <= 121.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.44898,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.448979591836734,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2043,14 +2038,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 121.000000 && feature.properties['VOTOS'] <= 122.000000 ) {
+            if (feature.properties['50555'] >= 121.000000 && feature.properties['50555'] <= 122.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.53606,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.536054421768709,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2059,14 +2054,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 122.000000 && feature.properties['VOTOS'] <= 123.000000 ) {
+            if (feature.properties['50555'] >= 122.000000 && feature.properties['50555'] <= 123.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.62312,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.62312925170068,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2075,14 +2070,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 123.000000 && feature.properties['VOTOS'] <= 124.000000 ) {
+            if (feature.properties['50555'] >= 123.000000 && feature.properties['50555'] <= 124.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.7102,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.710204081632654,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2091,14 +2086,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 124.000000 && feature.properties['VOTOS'] <= 125.000000 ) {
+            if (feature.properties['50555'] >= 124.000000 && feature.properties['50555'] <= 125.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.79728,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.797278911564627,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2107,14 +2102,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 125.000000 && feature.properties['VOTOS'] <= 126.000000 ) {
+            if (feature.properties['50555'] >= 125.000000 && feature.properties['50555'] <= 126.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.88436,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.884353741496598,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2123,14 +2118,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 126.000000 && feature.properties['VOTOS'] <= 127.000000 ) {
+            if (feature.properties['50555'] >= 126.000000 && feature.properties['50555'] <= 127.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 12.97142,
+                pane: 'pane_votaovereadores_1',
+                radius: 12.971428571428573,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2139,14 +2134,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 127.000000 && feature.properties['VOTOS'] <= 128.000000 ) {
+            if (feature.properties['50555'] >= 127.000000 && feature.properties['50555'] <= 128.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.0585,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.058503401360545,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2155,14 +2150,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 128.000000 && feature.properties['VOTOS'] <= 129.000000 ) {
+            if (feature.properties['50555'] >= 128.000000 && feature.properties['50555'] <= 129.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.14558,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.145578231292518,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2171,14 +2166,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 129.000000 && feature.properties['VOTOS'] <= 130.000000 ) {
+            if (feature.properties['50555'] >= 129.000000 && feature.properties['50555'] <= 130.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.23266,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.23265306122449,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2187,14 +2182,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 130.000000 && feature.properties['VOTOS'] <= 131.000000 ) {
+            if (feature.properties['50555'] >= 130.000000 && feature.properties['50555'] <= 131.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.31972,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.319727891156463,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2203,14 +2198,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 131.000000 && feature.properties['VOTOS'] <= 132.000000 ) {
+            if (feature.properties['50555'] >= 131.000000 && feature.properties['50555'] <= 132.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.4068,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.406802721088436,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2219,14 +2214,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 132.000000 && feature.properties['VOTOS'] <= 133.000000 ) {
+            if (feature.properties['50555'] >= 132.000000 && feature.properties['50555'] <= 133.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.49388,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.49387755102041,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2235,14 +2230,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 133.000000 && feature.properties['VOTOS'] <= 134.000000 ) {
+            if (feature.properties['50555'] >= 133.000000 && feature.properties['50555'] <= 134.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.58096,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.580952380952382,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2251,14 +2246,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 134.000000 && feature.properties['VOTOS'] <= 135.000000 ) {
+            if (feature.properties['50555'] >= 134.000000 && feature.properties['50555'] <= 135.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.66802,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.668027210884354,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2267,14 +2262,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 135.000000 && feature.properties['VOTOS'] <= 136.000000 ) {
+            if (feature.properties['50555'] >= 135.000000 && feature.properties['50555'] <= 136.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.7551,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.755102040816327,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2283,14 +2278,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 136.000000 && feature.properties['VOTOS'] <= 137.000000 ) {
+            if (feature.properties['50555'] >= 136.000000 && feature.properties['50555'] <= 137.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.84218,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.8421768707483,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2299,14 +2294,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 137.000000 && feature.properties['VOTOS'] <= 138.000000 ) {
+            if (feature.properties['50555'] >= 137.000000 && feature.properties['50555'] <= 138.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 13.92926,
+                pane: 'pane_votaovereadores_1',
+                radius: 13.929251700680274,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2315,14 +2310,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 138.000000 && feature.properties['VOTOS'] <= 139.000000 ) {
+            if (feature.properties['50555'] >= 138.000000 && feature.properties['50555'] <= 139.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.01632,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.016326530612245,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2331,14 +2326,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 139.000000 && feature.properties['VOTOS'] <= 140.000000 ) {
+            if (feature.properties['50555'] >= 139.000000 && feature.properties['50555'] <= 140.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.1034,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.103401360544218,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2347,14 +2342,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 140.000000 && feature.properties['VOTOS'] <= 141.000000 ) {
+            if (feature.properties['50555'] >= 140.000000 && feature.properties['50555'] <= 141.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.19048,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.19047619047619,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2363,14 +2358,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 141.000000 && feature.properties['VOTOS'] <= 142.000000 ) {
+            if (feature.properties['50555'] >= 141.000000 && feature.properties['50555'] <= 142.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.27756,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.277551020408165,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2379,14 +2374,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 142.000000 && feature.properties['VOTOS'] <= 143.000000 ) {
+            if (feature.properties['50555'] >= 142.000000 && feature.properties['50555'] <= 143.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.36462,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.364625850340136,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2395,14 +2390,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 143.000000 && feature.properties['VOTOS'] <= 144.000000 ) {
+            if (feature.properties['50555'] >= 143.000000 && feature.properties['50555'] <= 144.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.4517,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.45170068027211,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2411,14 +2406,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 144.000000 && feature.properties['VOTOS'] <= 145.000000 ) {
+            if (feature.properties['50555'] >= 144.000000 && feature.properties['50555'] <= 145.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.53878,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.538775510204083,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2427,14 +2422,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 145.000000 && feature.properties['VOTOS'] <= 146.000000 ) {
+            if (feature.properties['50555'] >= 145.000000 && feature.properties['50555'] <= 146.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.62586,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.625850340136054,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2443,14 +2438,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 146.000000 && feature.properties['VOTOS'] <= 147.000000 ) {
+            if (feature.properties['50555'] >= 146.000000 && feature.properties['50555'] <= 147.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
-                radius: 14.71292,
+                pane: 'pane_votaovereadores_1',
+                radius: 14.71292517006803,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -2459,13 +2454,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
-            if (feature.properties['VOTOS'] >= 147.000000 && feature.properties['VOTOS'] <= 148.000000 ) {
+            if (feature.properties['50555'] >= 147.000000 && feature.properties['50555'] <= 148.000000 ) {
                 return {
-                pane: 'pane_votosjurandir_1',
+                pane: 'pane_votaovereadores_1',
                 radius: 14.8,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -2475,31 +2470,31 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,166,178,1.0)',
+                fillColor: 'rgba(116,183,100,1.0)',
                 interactive: true,
             }
             }
         }
-        map.createPane('pane_votosjurandir_1');
-        map.getPane('pane_votosjurandir_1').style.zIndex = 401;
-        map.getPane('pane_votosjurandir_1').style['mix-blend-mode'] = 'normal';
-        var layer_votosjurandir_1 = new L.geoJson(json_votosjurandir_1, {
+        map.createPane('pane_votaovereadores_1');
+        map.getPane('pane_votaovereadores_1').style.zIndex = 401;
+        map.getPane('pane_votaovereadores_1').style['mix-blend-mode'] = 'normal';
+        var layer_votaovereadores_1 = new L.geoJson(json_votaovereadores_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_votosjurandir_1',
-            layerName: 'layer_votosjurandir_1',
-            pane: 'pane_votosjurandir_1',
-            onEachFeature: pop_votosjurandir_1,
+            dataVar: 'json_votaovereadores_1',
+            layerName: 'layer_votaovereadores_1',
+            pane: 'pane_votaovereadores_1',
+            onEachFeature: pop_votaovereadores_1,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_votosjurandir_1_0(feature));
+                return L.circleMarker(latlng, style_votaovereadores_1_0(feature));
             },
         });
-        bounds_group.addLayer(layer_votosjurandir_1);
-        map.addLayer(layer_votosjurandir_1);
+        bounds_group.addLayer(layer_votaovereadores_1);
+        map.addLayer(layer_votaovereadores_1);
         setBounds();
         </script>
     </body>
